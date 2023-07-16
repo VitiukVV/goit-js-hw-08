@@ -26,7 +26,7 @@ function onFormSubmit(event) {
 }
 
 function onTextAreaInput(event) {
-  feedbackForm[event.target.name] = event.target.value;
+  feedbackForm[event.target.name] = event.target.value.trim();
   localStorage.setItem(KEY_STORAGE, JSON.stringify(feedbackForm));
 }
 
