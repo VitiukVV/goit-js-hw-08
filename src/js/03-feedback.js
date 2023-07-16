@@ -4,7 +4,6 @@ const form = document.querySelector('.feedback-form');
 const { email, message } = form.elements;
 const KEY_STORAGE = 'feedback-form-state';
 const savedForm = localStorage.getItem(KEY_STORAGE);
-
 let feedbackForm = {
   email: email.value.trim(),
   message: message.value.trim(),
@@ -20,13 +19,17 @@ function onFormSubmit(event) {
   if (!email.value.trim() || !message.value.trim()) {
     return alert('Усі поля форми повинні бути заповнені!');
   }
+  feedbackForm = {
+    email: email.value.trim(),
+    message: message.value.trim(),
+  };
+  console.log(feedbackForm);
   event.currentTarget.reset();
   localStorage.removeItem(KEY_STORAGE);
-  console.log(feedbackForm);
 }
 
 function onTextAreaInput(event) {
-  feedbackForm[event.target.name] = event.target.value.trim();
+  feedbackForm[event.target.name] = event.target.value;
   localStorage.setItem(KEY_STORAGE, JSON.stringify(feedbackForm));
 }
 
