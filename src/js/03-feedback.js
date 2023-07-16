@@ -6,8 +6,8 @@ const KEY_STORAGE = 'feedback-form-state';
 const savedForm = localStorage.getItem(KEY_STORAGE);
 
 let feedbackForm = {
-  email: email.value,
-  message: message.value,
+  email: email.value.trim(),
+  message: message.value.trim(),
 };
 
 form.addEventListener('submit', onFormSubmit);
@@ -26,7 +26,7 @@ function onFormSubmit(event) {
 }
 
 function onTextAreaInput(event) {
-  feedbackForm[event.target.name] = event.target.value.trim();
+  feedbackForm[event.target.name] = event.target.value;
   localStorage.setItem(KEY_STORAGE, JSON.stringify(feedbackForm));
 }
 
