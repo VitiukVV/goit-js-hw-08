@@ -17,18 +17,16 @@ populateForm();
 
 function onFormSubmit(event) {
   event.preventDefault();
-  if ((email.value.length && message.value.length) < 1) {
-    alert('Усі поля форми повинні бути заповнені!');
-    return;
-  } else {
-    event.currentTarget.reset();
-    localStorage.removeItem(KEY_STORAGE);
-    console.log(feedbackForm);
+  if (!email.value.trim() || !message.value.trim()) {
+    return alert('Усі поля форми повинні бути заповнені!');
   }
+  event.currentTarget.reset();
+  localStorage.removeItem(KEY_STORAGE);
+  console.log(feedbackForm);
 }
 
 function onTextAreaInput(event) {
-  feedbackForm[event.target.name] = event.target.value;
+  feedbackForm[event.target.name] = event.target.value.trim();
   localStorage.setItem(KEY_STORAGE, JSON.stringify(feedbackForm));
 }
 
